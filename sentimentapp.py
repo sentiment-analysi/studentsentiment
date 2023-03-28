@@ -16,7 +16,7 @@ nltk.download('stopwords')
 
 
 
-loaded_model=pickle.load(open('trained.sav','rb'))
+loaded_model = pickle.load(open('trained.sav','rb'))
 cv=pickle.load(open('count-Vectorizer.pkl','rb'))
 sc=pickle.load(open('Standard-Scaler.pkl','rb'))
 def predict_sentiment1(input_review):
