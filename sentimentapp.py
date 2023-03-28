@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Mar  7 19:18:41 2023
 
-@author: EXSON
-"""
 
 import re
 import nltk
@@ -15,8 +10,8 @@ nltk.download('stopwords')
 
 
 
-loaded_model=pickle.load(open('D:/work/trained.sav','rb'))
-cv1=pickle.load(open('D:/work/count-Vectorizer.pkl','rb'))
+loaded_model=pickle.load(open('trained.sav','rb'))
+cv1=pickle.load(open('count-Vectorizer.pkl','rb'))
 
 def predict_sentiment1(sample_review):
         sample_review = re.sub(pattern='[^a-zA-Z]',repl=' ', string = sample_review)
