@@ -10,6 +10,8 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 import pickle
+from keras.models import Sequential
+from keras.layers import Dense
 from sklearn.preprocessing import StandardScaler
 import streamlit as st
 nltk.download('stopwords')
