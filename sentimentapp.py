@@ -17,21 +17,26 @@ nltk.download('stopwords')
 
 
 loaded_model=pickle.load(open('trained.sav','rb'))
-cv1=pickle.load(open('count-Vectorizer.pkl','rb'))
-
-def predict_sentiment1(sample_review):
-          sample_review = re.sub(pattern='[^a-zA-Z]',repl=' ', string = sample_review)
-          sample_review = sample_review.lower()
-          sample_review_words = sample_review.split()
-          stop_words = set(stopwords.words('english'))
-          stop_words.remove('not')
-          sample_review_words = [word for word in sample_review_words if not word in stop_words]
-          ps = PorterStemmer()
-          final_review = [ps.stem(word) for word in sample_review_words]
-          final_review = ' '.join(final_review)
-
-          temp = cv.transform([final_review]).toarray()
-          return classifier.predict(temp)
+cv=pickle.load(open('count-Vectorizer.pkl','rb'))
+sc=pickle.load(open('Standard-Scaler.pkl','rb'))
+def predict_sentiment1(input_review):
+        input_review = re.sub(pattern='[^a-zA-Z]',repl=' ', string=input_review)
+        input_review = input_review.lower()
+        input_review_words = input_review.split()
+        stop_words = set(stopwords.words('english'))
+        stop_words.remove('not')
+        input_review_words = [word for word in input_review_words if not word in stop_words]
+        ps = PorterStemmer()
+        input_review = [ps.stem(word) for word in input_review_words]
+        input_review = ' '.join(input_review)
+        input_X = cv.transform([input_review]).toarray()
+        input_X = sc.transform(input_X)
+        pred = loaded_model.predict(input_X)
+        pred = (pred > 0.5)
+        if pred[0][0]:
+            print("Positive review")
+        else:
+            print("Negative review")
     
     
     
