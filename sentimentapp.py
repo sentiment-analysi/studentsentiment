@@ -10,6 +10,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 import pickle
+import keras
 from keras.models import Sequential
 from keras.layers import Dense
 from sklearn.preprocessing import StandardScaler
